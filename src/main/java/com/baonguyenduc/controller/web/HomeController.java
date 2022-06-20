@@ -2,6 +2,7 @@ package com.baonguyenduc.controller.web;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baonguyenduc.model.UserModel;
+import com.baonguyenduc.service.ICategoryService;
+import com.baonguyenduc.service.INewsService;
+import com.baonguyenduc.service.impl.CategoryService;
 
 @WebServlet(urlPatterns = { "/trang-chu" })
 public class HomeController extends HttpServlet {
@@ -19,20 +23,19 @@ public class HomeController extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	private ICategoryService categoryService;
+
+	@Inject
+	private INewsService newsService;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		UserModel userModel = new UserModel();
-		userModel.setUserName("baonguyen");
-		userModel.setFullName("NguyenDucBao");
-		
-		UserModel userModel2 = new UserModel();
-		userModel2.setUserName("baonguyen2");
-		userModel2.setFullName("NguyenDucBao2");
-		
-		req.setAttribute("model", userModel);
+		Long categoryId = 1L;
+		req.setAttribute("news", newsService.findNewsByCategoryId(categoryId));
+		req.setAttribute("categories", categoryService.findAll());
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/web/home.jsp");
 		dispatcher.forward(req, resp);
-
 
 	}
 
