@@ -6,4 +6,6 @@ import com.baonguyenduc.model.NewsModel;
 
 public interface INewsService {
 	List<NewsModel> findNewsByCategoryId(Long categoryId);
+
+	Long save(NewsModel news);
 }

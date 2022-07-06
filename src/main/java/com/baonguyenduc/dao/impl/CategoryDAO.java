@@ -57,4 +57,20 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 
 	}
 
+	@Override
+	public Long saveCategory(String sql, Object... objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateCategory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
 }

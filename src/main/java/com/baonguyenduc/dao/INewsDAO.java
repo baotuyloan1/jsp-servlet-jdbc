@@ -6,4 +6,8 @@ import com.baonguyenduc.model.NewsModel;
 
 public interface INewsDAO extends IGenericDAO<NewsModel> {
 	List<NewsModel> findNewsByCategoryId(Long categoryId);
+
+	Long saveNews(NewsModel newsModel);
+
+	void updateNews(NewsModel newsModel);
 }
